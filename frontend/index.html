@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpendSense - Student Money Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+    <!-- ================= LOGIN / REGISTER ================= -->
+
+    <div id="authSection">
+
+        <h2>SpendSense Login</h2>
+
+
+        <!-- ================= REGISTER ================= -->
+
+        <div id="registerSection">
+
+            <h3>Create Account</h3>
+
+            <input
+                type="text"
+                id="registerName"
+                placeholder="Enter your name">
+
+            <input
+                type="email"
+                id="registerEmail"
+                placeholder="Enter email">
+
+            <input
+                type="password"
+                id="registerPassword"
+                placeholder="Enter password">
+
+            <br><br>
+
+            <button onclick="registerUser()">
+                Register
+            </button>
+
+        </div>
+
+
+        <hr>
+
+
+        <!-- ================= LOGIN ================= -->
+
+        <div id="loginSection">
+
+            <h3>Login</h3>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter email">
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter password">
+
+            <br><br>
+
+            <button onclick="loginUser()">
+                Login
+            </button>
+
+            <br><br>
+
+            <button onclick="showForgotPassword()">
+                Forgot Password?
+            </button>
+
+        </div>
+
+
+        <p id="authMessage"></p>
+
+
+        <!-- ================= FORGOT PASSWORD ================= -->
+
+        <div
+            id="forgotPasswordSection"
+            style="display: none;">
+
+            <h3>Forgot Password</h3>
+
+
+            <!-- Registered Email -->
+
+            <input
+                type="email"
+                id="forgotEmail"
+                placeholder="Enter your registered email">
+
+            <br><br>
+
+
+            <!-- Check Email -->
+
+            <button onclick="requestPasswordReset()">
+                Reset Password
+            </button>
+
+
+            <button onclick="hideForgotPassword()">
+                Back to Login
+            </button>
+
+
+            <p id="forgotMessage"></p>
+
+
+            <!-- New Password
+                 Hidden initially -->
+
+            <input
+                type="password"
+                id="newPassword"
+                placeholder="Enter new password"
+                style="display: none;">
+
+
+            <br><br>
+
+
+            <!-- Set New Password
+                 Hidden initially -->
+
+            <button
+                id="setNewPasswordButton"
+                onclick="resetPassword()"
+                style="display: none;">
+
+                Set New Password
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= MAIN APPLICATION ================= -->
+
+    <div id="mainApp">
+
+
+        <!-- ================= NAVIGATION ================= -->
+
+        <nav>
+
+            <a href="#studentProfile">
+                Dashboard
+            </a>
+
+            <a href="#monthlyIncome">
+                Income
+            </a>
+
+            <a href="#expenseForm">
+                Expenses
+            </a>
+
+            <a href="#monthlyBudget">
+                Budget
+            </a>
+
+        </nav>
+
+
+        <h1>SpendSense</h1>
+
+        <p>
+            Manage your money. Track your spending. Reach your goals.
+        </p>
+
+
+        <button onclick="logoutUser()">
+            Logout
+        </button>
+
+
+        <h2>
+            Student Dashboard
+        </h2>
+
+
+
+        <!-- ================= STUDENT PROFILE ================= -->
+
+        <div id="studentProfile">
+
+            <h2>
+                Student Profile
+            </h2>
+
+            <input
+                type="text"
+                id="studentName"
+                placeholder="Enter your name">
+
+            <input
+                type="number"
+                id="studentAge"
+                placeholder="Enter your age">
+
+            <br><br>
+
+            <button onclick="saveProfile()">
+                Save Profile
+            </button>
+
+            <p id="profileDisplay">
+                Profile not set.
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= TOTAL EXPENSES ================= -->
+
+        <div class="card">
+
+            <h3>
+                Total Expenses
+            </h3>
+
+            <p id="totalExpenses">
+                ₹0
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= MONTHLY INCOME ================= -->
+
+        <div class="card">
+
+            <h3>
+                Monthly Income
+            </h3>
+
+            <p id="monthlyIncome">
+                ₹0
+            </p>
+
+            <input
+                type="number"
+                id="incomeInput"
+                placeholder="Enter income">
+
+            <button onclick="saveIncome()">
+                Save Income
+            </button>
+
+        </div>
+
+
+
+        <!-- ================= MONTHLY BUDGET ================= -->
+
+        <div class="card">
+
+            <h3>
+                Monthly Budget
+            </h3>
+
+            <p id="monthlyBudget">
+                ₹0
+            </p>
+
+            <input
+                type="number"
+                id="budgetInput"
+                placeholder="Enter budget">
+
+            <button onclick="saveBudget()">
+                Save Budget
+            </button>
+
+            <p id="budgetRemaining">
+                Budget Remaining: ₹0
+            </p>
+
+            <p id="budgetAlert"></p>
+
+            <p id="budgetPercentage">
+                Budget Used: 0%
+            </p>
+
+            <div class="budget-progress-container">
+
+                <div id="budgetProgressBar"></div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= REMAINING BALANCE ================= -->
+
+        <div class="card">
+
+            <h3>
+                Remaining Balance
+            </h3>
+
+            <p id="remainingBalance">
+                ₹0
+            </p>
+
+            <p id="spendingAlert"></p>
+
+        </div>
+
+
+
+        <!-- ================= MONTHLY SAVINGS ================= -->
+
+        <div class="card">
+
+            <h3>
+                Monthly Savings
+            </h3>
+
+            <p id="monthlySavings">
+                ₹0
+            </p>
+
+            <p id="savingsRate">
+                Savings Rate: 0%
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= MONTHLY SUMMARY ================= -->
+
+        <h2>
+            Monthly Summary
+        </h2>
+
+        <div id="monthlySummary">
+
+            <p id="summaryIncome">
+                Income: ₹0
+            </p>
+
+            <p id="summaryExpenses">
+                Expenses: ₹0
+            </p>
+
+            <p id="summarySavings">
+                Savings: ₹0
+            </p>
+
+            <p id="summaryStatus"></p>
+
+            <p id="summaryExpenseCount">
+                Number of Expenses: 0
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= ADD EXPENSE ================= -->
+
+        <button onclick="addExpense()">
+            Add Expense
+        </button>
+
+
+        <div id="expenseForm">
+
+            <h3>
+                Add New Expense
+            </h3>
+
+            <label>
+                Category:
+            </label>
+
+            <select id="expenseCategory">
+
+                <option value="">
+                    Select Category
+                </option>
+
+                <option>Food</option>
+                <option>Travel</option>
+                <option>Education</option>
+                <option>College Fees</option>
+                <option>Books</option>
+                <option>Projects</option>
+                <option>Hostel</option>
+                <option>Mobile Recharge</option>
+                <option>Entertainment</option>
+                <option>Shopping</option>
+                <option>Other</option>
+
+            </select>
+
+            <br><br>
+
+            <label>
+                Amount:
+            </label>
+
+            <input
+                type="number"
+                id="expenseAmount"
+                placeholder="Enter amount">
+
+            <br><br>
+
+            <label>
+                Description:
+            </label>
+
+            <input
+                type="text"
+                id="expenseDescription"
+                placeholder="Example: Lunch">
+
+            <br><br>
+
+            <label>
+                Date:
+            </label>
+
+            <input
+                type="date"
+                id="expenseDate">
+
+            <br><br>
+
+            <button onclick="saveExpense()">
+                Save Expense
+            </button>
+
+        </div>
+
+
+
+        <!-- ================= CATEGORY SPENDING ================= -->
+
+        <h2>
+            Category Spending
+        </h2>
+
+        <div id="categoryList">
+
+            <p>
+                No category spending yet.
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= CATEGORY BUDGET ================= -->
+
+        <h2>
+            Category Budget
+        </h2>
+
+        <div id="categoryBudget">
+
+            <select id="budgetCategory">
+
+                <option value="">
+                    Select Category
+                </option>
+
+                <option>Food</option>
+                <option>Travel</option>
+                <option>Education</option>
+                <option>College Fees</option>
+                <option>Books</option>
+                <option>Projects</option>
+                <option>Hostel</option>
+                <option>Mobile Recharge</option>
+                <option>Entertainment</option>
+                <option>Shopping</option>
+                <option>Other</option>
+
+            </select>
+
+            <input
+                type="number"
+                id="categoryBudgetAmount"
+                placeholder="Enter category budget">
+
+            <button onclick="saveCategoryBudget()">
+                Save Category Budget
+            </button>
+
+            <div id="categoryBudgetList">
+
+                <p>
+                    No category budgets set.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= SPENDING CHART ================= -->
+
+        <h2>
+            Spending Chart
+        </h2>
+
+        <div id="spendingChart">
+
+            <p>
+                No spending data yet.
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= SPENDING COMPARISON ================= -->
+
+        <h2>
+            Spending Comparison
+        </h2>
+
+        <div id="spendingComparison">
+
+            <p id="currentMonthSpending">
+                Current Month: ₹0
+            </p>
+
+            <p>
+                Previous Month: ₹0
+            </p>
+
+            <input
+                type="number"
+                id="previousMonthInput"
+                placeholder="Enter previous month spending">
+
+            <button onclick="savePreviousMonth()">
+                Save
+            </button>
+
+            <p id="comparisonResult"></p>
+
+        </div>
+
+
+
+        <!-- ================= SAVINGS GOAL ================= -->
+
+        <h2>
+            Savings Goal
+        </h2>
+
+        <div id="savingsGoal">
+
+            <p>
+                Goal: Not set
+            </p>
+
+            <p>
+                Target: ₹0
+            </p>
+
+            <p>
+                Saved: ₹0
+            </p>
+
+            <p>
+                Remaining: ₹0
+            </p>
+
+            <p id="savingsProgress">
+                Progress: 0%
+            </p>
+
+            <p id="savingsGoalStatus"></p>
+
+
+            <div class="progress-container">
+
+                <div id="savingsProgressBar"></div>
+
+            </div>
+
+
+            <input
+                type="text"
+                id="goalNameInput"
+                placeholder="Goal name">
+
+            <input
+                type="number"
+                id="goalTargetInput"
+                placeholder="Target amount">
+
+            <input
+                type="number"
+                id="goalSavedInput"
+                placeholder="Saved amount">
+
+            <button onclick="saveSavingsGoal()">
+                Save Goal
+            </button>
+
+        </div>
+
+
+
+        <!-- ================= UPCOMING EXPENSE ================= -->
+
+        <h2>
+            Upcoming Expense
+        </h2>
+
+        <div id="upcomingExpense">
+
+            <p id="upcomingExpenseDisplay">
+                No upcoming expense added.
+            </p>
+
+            <p id="upcomingExpenseStatus"></p>
+
+            <input
+                type="text"
+                id="upcomingExpenseName"
+                placeholder="Expense name">
+
+            <input
+                type="number"
+                id="upcomingExpenseAmount"
+                placeholder="Amount">
+
+            <input
+                type="date"
+                id="upcomingExpenseDate">
+
+            <button onclick="saveUpcomingExpense()">
+                Save Upcoming Expense
+            </button>
+
+        </div>
+
+
+
+        <!-- ================= SMART SPENDING INSIGHT ================= -->
+
+        <h2>
+            Smart Spending Insight
+        </h2>
+
+        <div id="spendingInsight">
+
+            <p>
+                No spending insight yet.
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= RECENT EXPENSES ================= -->
+
+        <h2>
+            Recent Expenses
+        </h2>
+
+        <div id="expenseList">
+
+            <p>
+                No expenses added yet.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

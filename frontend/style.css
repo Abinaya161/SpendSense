@@ -1,0 +1,1065 @@
+/* =========================================================
+   SpendSense - Premium Glassmorphism Finance Dashboard
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+#mainApp {
+    display: none;
+}
+
+body {
+    min-height: 100vh;
+
+    padding: 0 25px 70px;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    color: #f8fafc;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(124, 58, 237, 0.35),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(6, 182, 212, 0.25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(236, 72, 153, 0.20),
+            transparent 35%
+        ),
+        #080b1a;
+
+    background-attachment: fixed;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+nav {
+    position: sticky;
+    top: 0;
+
+    z-index: 999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 15px;
+
+    margin: 0 -25px 40px;
+
+    background: rgba(8, 11, 26, 0.82);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+nav a {
+    text-decoration: none;
+
+    color: #cbd5e1;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    padding: 10px 17px;
+
+    border-radius: 25px;
+
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #06b6d4
+        );
+
+    box-shadow:
+        0 0 20px rgba(124, 58, 237, 0.45);
+
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   MAIN TITLE
+   ========================================================= */
+
+h1 {
+    text-align: center;
+
+    font-size: 55px;
+
+    font-weight: 900;
+
+    margin-top: 35px;
+
+    letter-spacing: -2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #a78bfa,
+            #22d3ee,
+            #f472b6
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    filter:
+        drop-shadow(
+            0 0 20px rgba(124, 58, 237, 0.25)
+        );
+}
+
+body > p {
+    text-align: center;
+
+    color: #94a3b8;
+
+    font-size: 17px;
+
+    margin-top: 10px;
+
+    margin-bottom: 45px;
+}
+
+h2 {
+    text-align: center;
+
+    color: #f8fafc;
+
+    font-size: 26px;
+
+    margin-top: 45px;
+
+    margin-bottom: 22px;
+}
+
+h3 {
+    color: #e2e8f0;
+
+    margin-bottom: 10px;
+}
+
+/* =========================================================
+   GLASS CARDS
+   ========================================================= */
+
+#studentProfile,
+.card,
+#expenseForm,
+#categoryBudget,
+#categoryList,
+#spendingChart,
+#spendingComparison,
+#savingsGoal,
+#upcomingExpense,
+#spendingInsight,
+#monthlySummary,
+#expenseList {
+
+    max-width: 950px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-bottom: 22px;
+
+    padding: 27px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.09),
+            rgba(255,255,255,0.035)
+        );
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+#studentProfile:hover,
+.card:hover,
+#expenseForm:hover,
+#categoryBudget:hover,
+#categoryList:hover,
+#spendingChart:hover,
+#spendingComparison:hover,
+#savingsGoal:hover,
+#upcomingExpense:hover,
+#spendingInsight:hover,
+#monthlySummary:hover,
+#expenseList:hover {
+
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(167,139,250,0.35);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.40),
+        0 0 25px rgba(124,58,237,0.08);
+}
+
+/* =========================================================
+   STUDENT PROFILE
+   ========================================================= */
+
+#studentProfile {
+    border-top: 3px solid #a78bfa;
+}
+
+#studentProfile h2 {
+    margin-top: 0;
+
+    color: #c4b5fd;
+}
+
+/* =========================================================
+   DASHBOARD CARDS
+   ========================================================= */
+
+.card {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Total Expenses */
+#totalExpenses {
+    border-left: 4px solid #fb7185;
+}
+
+/* Monthly Income */
+#monthlyIncome {
+    border-left: 4px solid #34d399;
+}
+
+/* Monthly Budget */
+#monthlyBudget {
+    border-left: 4px solid #60a5fa;
+}
+
+/* Remaining Balance */
+#remainingBalance {
+    border-left: 4px solid #fbbf24;
+}
+
+/* Monthly Savings */
+#monthlySavings {
+    border-left: 4px solid #c084fc;
+}
+
+/* Total Expenses */
+
+.card:nth-of-type(1) {
+    border-left: 4px solid #fb7185;
+}
+
+.card:nth-of-type(1)::after {
+    background: #fb7185;
+}
+
+.card:nth-of-type(1) h3 {
+    color: #fb7185;
+}
+
+/* Monthly Income */
+
+.card:nth-of-type(2) {
+    border-left: 4px solid #34d399;
+}
+
+.card:nth-of-type(2)::after {
+    background: #34d399;
+}
+
+.card:nth-of-type(2) h3 {
+    color: #34d399;
+}
+
+/* Monthly Budget */
+
+.card:nth-of-type(3) {
+    border-left: 4px solid #60a5fa;
+}
+
+.card:nth-of-type(3)::after {
+    background: #60a5fa;
+}
+
+.card:nth-of-type(3) h3 {
+    color: #60a5fa;
+}
+
+/* Remaining Balance */
+
+.card:nth-of-type(4) {
+    border-left: 4px solid #fbbf24;
+}
+
+.card:nth-of-type(4)::after {
+    background: #fbbf24;
+}
+
+.card:nth-of-type(4) h3 {
+    color: #fbbf24;
+}
+
+/* Monthly Savings */
+
+.card:nth-of-type(5) {
+    border-left: 4px solid #c084fc;
+}
+
+.card:nth-of-type(5)::after {
+    background: #c084fc;
+}
+
+.card:nth-of-type(5) h3 {
+    color: #c084fc;
+}
+
+/* =========================================================
+   CARD VALUES
+   ========================================================= */
+
+.card p:first-of-type {
+
+    font-size: 34px;
+
+    font-weight: 800;
+
+    margin: 12px 0 18px;
+
+    color: #ffffff;
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+input,
+select {
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    margin: 6px 0;
+
+    border-radius: 13px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    outline: none;
+
+    background:
+        rgba(15,23,42,0.75);
+
+    color: #f8fafc;
+
+    font-size: 15px;
+
+    transition: all 0.3s ease;
+}
+
+input::placeholder {
+    color: #64748b;
+}
+
+input:focus,
+select:focus {
+
+    border-color: #22d3ee;
+
+    background:
+        rgba(15,23,42,0.95);
+
+    box-shadow:
+        0 0 0 3px rgba(34,211,238,0.12),
+        0 0 20px rgba(34,211,238,0.12);
+}
+
+select option {
+    background: #111827;
+
+    color: white;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+
+    border: none;
+
+    border-radius: 13px;
+
+    padding: 13px 22px;
+
+    margin-top: 8px;
+
+    cursor: pointer;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+    box-shadow:
+        0 8px 20px rgba(124,58,237,0.25);
+
+    transition: all 0.3s ease;
+}
+
+button:hover {
+
+    transform: translateY(-3px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #06b6d4,
+            #7c3aed
+        );
+
+    box-shadow:
+        0 12px 30px rgba(124,58,237,0.40);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* =========================================================
+   ADD EXPENSE BUTTON
+   ========================================================= */
+
+#mainApp > button[onclick="addExpense()"] {
+
+    display: block;
+
+    width: fit-content;
+
+    margin: 5px auto 0;
+
+    padding: 15px 32px;
+
+    border-radius: 30px;
+
+    font-size: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ec4899,
+            #7c3aed,
+            #2563eb
+        );
+
+    box-shadow:
+        0 10px 30px rgba(236,72,153,0.25);
+
+    transition: all 0.3s ease;
+}
+
+#mainApp > button[onclick="addExpense()"]:hover {
+
+    transform: translateY(-3px) scale(1.03);
+
+    box-shadow:
+        0 15px 40px rgba(236,72,153,0.35);
+}
+/* =========================================================
+   EXPENSE FORM
+   ========================================================= */
+
+#expenseForm {
+    border-top: 3px solid #06b6d4;
+}
+
+#expenseForm h3 {
+    color: #22d3ee;
+}
+
+#expenseForm label {
+    display: block;
+
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-top: 10px;
+}
+
+/* =========================================================
+   CATEGORY BUDGET
+   ========================================================= */
+
+#categoryBudget {
+    border-top: 3px solid #60a5fa;
+}
+
+#categoryBudgetList p {
+
+    padding: 13px 16px;
+
+    margin: 9px 0;
+
+    border-radius: 10px;
+
+    background:
+        rgba(37,99,235,0.12);
+
+    border-left: 3px solid #60a5fa;
+
+    color: #bfdbfe;
+}
+
+/* =========================================================
+   CATEGORY SPENDING
+   ========================================================= */
+
+#categoryList {
+    border-top: 3px solid #fbbf24;
+}
+
+#categoryList p {
+
+    padding: 13px 16px;
+
+    margin: 9px 0;
+
+    border-radius: 10px;
+
+    background:
+        rgba(251,191,36,0.09);
+
+    border-left: 3px solid #fbbf24;
+
+    color: #fde68a;
+
+    font-weight: 600;
+}
+
+/* =========================================================
+   SPENDING CHART
+   ========================================================= */
+
+#spendingChart {
+    border-top: 3px solid #c084fc;
+}
+
+.chart-item {
+    margin-bottom: 20px;
+}
+
+.chart-item p {
+
+    color: #cbd5e1;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+.chart-bar-container {
+
+    width: 100%;
+
+    height: 17px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.chart-bar {
+
+    height: 100%;
+
+    min-width: 8px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7c3aed,
+            #ec4899,
+            #22d3ee
+        );
+
+    box-shadow:
+        0 0 15px rgba(124,58,237,0.35);
+
+    transition:
+        width 0.6s ease;
+}
+
+/* =========================================================
+   SPENDING COMPARISON
+   ========================================================= */
+
+#spendingComparison {
+    border-top: 3px solid #22d3ee;
+}
+
+#spendingComparison p {
+
+    padding: 13px;
+
+    margin: 8px 0;
+
+    border-radius: 10px;
+
+    background:
+        rgba(34,211,238,0.08);
+
+    color: #a5f3fc;
+}
+
+#comparisonResult {
+    font-weight: 800;
+}
+
+/* =========================================================
+   SAVINGS GOAL
+   ========================================================= */
+
+#savingsGoal {
+    border-top: 3px solid #c084fc;
+}
+
+#savingsGoal p {
+
+    padding: 10px 14px;
+
+    margin: 8px 0;
+
+    border-radius: 9px;
+
+    background:
+        rgba(192,132,252,0.08);
+
+    color: #ddd6fe;
+}
+
+#savingsProgress {
+
+    color: #c4b5fd;
+
+    font-weight: 800;
+}
+
+.progress-container {
+
+    width: 100%;
+
+    height: 18px;
+
+    margin: 15px 0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background:
+        rgba(255,255,255,0.08);
+}
+
+#savingsProgressBar {
+
+    width: 0%;
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7c3aed,
+            #ec4899
+        );
+
+    box-shadow:
+        0 0 18px rgba(236,72,153,0.35);
+
+    transition:
+        width 0.6s ease;
+}
+
+/* =========================================================
+   UPCOMING EXPENSE
+   ========================================================= */
+
+#upcomingExpense {
+    border-top: 3px solid #fb923c;
+}
+
+#upcomingExpenseDisplay {
+
+    padding: 15px;
+
+    border-radius: 11px;
+
+    background:
+        rgba(251,146,60,0.09);
+
+    border-left: 3px solid #fb923c;
+
+    color: #fed7aa;
+
+    font-weight: 600;
+}
+
+#upcomingExpenseStatus {
+
+    color: #fdba74;
+
+    font-weight: 800;
+}
+
+/* =========================================================
+   SMART INSIGHT
+   ========================================================= */
+
+#spendingInsight {
+
+    border-top: 3px solid #2dd4bf;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20,184,166,0.10),
+            rgba(6,182,212,0.05)
+        );
+}
+
+#spendingInsight p {
+
+    padding: 17px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(20,184,166,0.08);
+
+    color: #99f6e4;
+
+    font-weight: 700;
+
+    line-height: 1.6;
+}
+
+/* =========================================================
+   MONTHLY SUMMARY
+   ========================================================= */
+
+#monthlySummary {
+    border-top: 3px solid #60a5fa;
+}
+
+#monthlySummary p {
+
+    padding: 13px 15px;
+
+    margin: 8px 0;
+
+    border-radius: 9px;
+
+    background:
+        rgba(96,165,250,0.07);
+
+    color: #bfdbfe;
+
+    font-weight: 600;
+}
+
+/* =========================================================
+   RECENT EXPENSES
+   ========================================================= */
+
+#expenseList {
+    border-top: 3px solid #f472b6;
+}
+
+#expenseList p {
+
+    padding: 15px;
+
+    margin: 10px 0;
+
+    border-radius: 11px;
+
+    background:
+        rgba(244,114,182,0.07);
+
+    border-left: 3px solid #f472b6;
+
+    color: #fbcfe8;
+
+    line-height: 1.7;
+}
+
+/* =========================================================
+   BUDGET PROGRESS
+   ========================================================= */
+
+.budget-progress-container {
+
+    width: 100%;
+
+    height: 18px;
+
+    margin: 15px 0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background:
+        rgba(255,255,255,0.08);
+}
+
+#budgetProgressBar {
+
+    width: 0%;
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #06b6d4,
+            #14b8a6
+        );
+
+    box-shadow:
+        0 0 18px rgba(6,182,212,0.35);
+
+    transition:
+        width 0.6s ease;
+}
+
+/* =========================================================
+   ALERTS
+   ========================================================= */
+
+#budgetAlert {
+    color: #fbbf24;
+
+    font-weight: 700;
+}
+
+#spendingAlert {
+    color: #fb7185;
+
+    font-weight: 700;
+}
+
+#budgetPercentage {
+    color: #60a5fa;
+
+    font-weight: 700;
+}
+
+#savingsRate {
+    color: #c084fc;
+
+    font-weight: 700;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080b1a;
+}
+
+::-webkit-scrollbar-thumb {
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            #7c3aed,
+            #06b6d4
+        );
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 0 12px 45px;
+    }
+
+    nav {
+
+        margin: 0 -12px 30px;
+
+        position: relative;
+
+        flex-wrap: wrap;
+
+        padding: 12px 8px;
+
+        gap: 4px;
+    }
+
+    nav a {
+
+        font-size: 11px;
+
+        padding: 8px 11px;
+    }
+
+    h1 {
+
+        font-size: 38px;
+
+        margin-top: 25px;
+    }
+
+    body > p {
+
+        font-size: 14px;
+
+        line-height: 1.5;
+
+        padding: 0 10px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    #studentProfile,
+    .card,
+    #expenseForm,
+    #categoryBudget,
+    #categoryList,
+    #spendingChart,
+    #spendingComparison,
+    #savingsGoal,
+    #upcomingExpense,
+    #spendingInsight,
+    #monthlySummary,
+    #expenseList {
+
+        padding: 19px;
+
+        border-radius: 17px;
+    }
+
+    .card p:first-of-type {
+        font-size: 28px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    body > button {
+        width: auto;
+    }
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    h1 {
+        font-size: 32px;
+    }
+
+    nav a {
+        font-size: 10px;
+
+        padding: 7px 9px;
+    }
+
+    h2 {
+        font-size: 19px;
+    }
+
+    .card p:first-of-type {
+        font-size: 25px;
+    }
+
+    input,
+    select {
+        font-size: 14px;
+    }
+}
