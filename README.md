@@ -183,4 +183,31 @@ B.E. Computer Science and Engineering
 
 
 GitHub: https://github.com/Abinaya161
+## Screenshots
 
+### Dashboard
+![Dashboard](SpendSense-Dashboard.png)
+
+### Income
+![Income](income.png)
+
+### Expenses
+![Expenses](expense.png)
+
+### Monthly Summary
+![Monthly Summary](monthlysummary.png)
+
+### Category Budget
+![Category Budget](categorybudget.png)
+
+### Savings Goals
+![Savings Goals](savingsgoal.png)
+
+### Upcoming Expenses
+![Upcoming Expenses](upcomingexpesnse.png)
+
+### Spending Analytics
+![Spending Analytics](spendingt.png)
+
+### Spending Overview
+![Spending Overview](spend.png)
