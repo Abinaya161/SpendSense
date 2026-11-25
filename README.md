@@ -8,6 +8,10 @@ SpendSense is a student-focused expense tracking and budgeting web application d
 
 \## Features
 
+## Dashboard Preview
+
+![SpendSense Dashboard](SpendSense-Dashboard.png)
+
 
 
 \- Student registration and login
